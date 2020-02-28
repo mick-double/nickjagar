@@ -4,7 +4,7 @@
 AV女優リスト
 
 '''
-import urllib.request
+import requests,bs4,csv,pprint,json
 
 
 # キーセット
@@ -13,6 +13,9 @@ AFFILIATEID = 'nickjagar-990'
 KEYWORD = 'しのだ'
 hitnum = '10'
 outformat = 'json'
+
+# 出力ファイル名
+output01_json = 'avlist.json'
 
 '''
 
@@ -24,8 +27,20 @@ url = 'https://api.dmm.com/affiliate/v3/ActressSearch?api_id='+APIID+'&affiliate
 
 print(url)
 #DMMのAPIからreqオブジェクト取得
-req = urllib.request.Request(url)
+# req = urllib.request.Request(url)
 
+res = requests.get(url)
+# print(res.text)
+pprint.pprint(res.json())
+json_data = res.json()
+
+with open(output01_json,'w') as f:
+    print('正常に読まれてavlist.jsonファイに書き込みます！')
+    json.dump(json_data,f,indent=4,ensure_ascii=False)
+
+
+
+'''
 try:
     with urllib.request.urlopen(req) as res:
         body = res.read()
@@ -34,4 +49,4 @@ except urllib.error.HTTPError as err:
     print(err.code)
 except urllib.error.URLError as err:
     print(err.reason)
-
+'''
