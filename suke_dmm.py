@@ -10,8 +10,8 @@ import requests,bs4,csv,pprint,json
 # キーセット
 APIID = 'wn2k2FSt6C1QFqcLLxgG'
 AFFILIATEID = 'nickjagar-990'
-KEYWORD = 'しのだ'
-hitnum = '10'
+KEYWORD = 'ゆう'
+hitnum = '100'
 outformat = 'json'
 
 # 出力ファイル名
@@ -33,6 +33,7 @@ res = requests.get(url)
 # print(res.text)
 pprint.pprint(res.json())
 json_data = res.json()
+print(type(json_data))
 
 with open(output01_json,'w') as f:
     print('正常に読まれてavlist.jsonファイに書き込みます！')
@@ -40,13 +41,14 @@ with open(output01_json,'w') as f:
 
 
 
-'''
-try:
-    with urllib.request.urlopen(req) as res:
-        body = res.read()
-        pritn(body)
-except urllib.error.HTTPError as err:
-    print(err.code)
-except urllib.error.URLError as err:
-    print(err.reason)
-'''
+actress = json_data['result']['actress']
+
+print(type(actress))
+
+for d in actress:
+    actress_name = d.get('name')
+    bustsize = d.get('bust')
+    cupsize = d.get('cup')
+    print(actress_name+':'+str(bustsize)+' '+str(cupsize))
+
+
