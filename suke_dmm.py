@@ -61,7 +61,7 @@ for d in actress:
         a_image = a_imageURL['large']
         print(a_image)
         # URLからjpgファイル名を抽出
-        a_image_f = a_image[35:]ｄっｍu
+        a_image_f = a_image[35:]
         print(a_image_f)
         print(gazou_folder+a_image_f)
         image_res = requests.get(a_image)
