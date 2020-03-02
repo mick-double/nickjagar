@@ -10,12 +10,13 @@ import requests,bs4,csv,pprint,json
 # キーセット
 APIID = 'wn2k2FSt6C1QFqcLLxgG'
 AFFILIATEID = 'nickjagar-990'
-KEYWORD = 'ゆう'
+KEYWORD = 'あ'
 hitnum = '100'
 outformat = 'json'
 
 # 出力ファイル名
 output01_json = 'avlist.json'
+gazou_folder = '/home/mitsuya/Pictures/avact/'
 
 '''
 
@@ -40,15 +41,33 @@ with open(output01_json,'w') as f:
     json.dump(json_data,f,indent=4,ensure_ascii=False)
 
 
+#辞書型は[]で場所特定して抽出
 
 actress = json_data['result']['actress']
-
 print(type(actress))
 
 for d in actress:
+    #リスト型は.getで抽出　一つずつ抽出する
     actress_name = d.get('name')
     bustsize = d.get('bust')
     cupsize = d.get('cup')
+    # 画像取得（値がないときは100を返す）
+    a_imageURL = d.get('imageURL',100)
+    # 女優名とバストサイズとcupサイズ
     print(actress_name+':'+str(bustsize)+' '+str(cupsize))
+
+    if not a_imageURL == 100:
+        print(type(a_imageURL))
+        a_image = a_imageURL['large']
+        print(a_image)
+        # URLからjpgファイル名を抽出
+        a_image_f = a_image[35:]ｄっｍu
+        print(a_image_f)
+        print(gazou_folder+a_image_f)
+        image_res = requests.get(a_image)
+        a_image_con = image_res.content
+        with open(gazou_folder+a_image_f,"wb") as aaa:
+            aaa.write(a_image_con)
+
 
 
