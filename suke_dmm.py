@@ -2,15 +2,18 @@
 
 いよいよ欲しかった情報に手を届かせる
 AV女優リスト
+ファイル名は指定したイニシャル＋avlist.txt
 
 '''
 import requests,bs4,csv,pprint,json
+
+jp = ["あ","い","う","え","お","か","き","く","け","こ","さ","し","す","せ","そ","た","ち","つ","て","と","な","に","ぬ","ね","の","は","ひ","ふ","へ","ほ","ま","み","む","め","も","や","ゆ","よ","ら","り","る","れ","ろ","わ","を","ん"]
 
 
 # キーセット
 APIID = 'wn2k2FSt6C1QFqcLLxgG'
 AFFILIATEID = 'nickjagar-990'
-initial = 'う'
+initial = jp[2]
 KEYWORD = 'いい'
 hitnum = '100'
 outformat = 'json'
@@ -61,7 +64,7 @@ for d in actress:
     nsize = actress_name+':'+str(bustsize)+' '+str(waistsize)+' '+str(hipsize)+' '+str(cupsize)+'cup'
     #print(actress_name+':'+str(bustsize)+' '+str(waistsize)+' '+str(hipsize)+' '+str(cupsize)+'cup')
     print(nsize)
-    with open(avlist,"a") as al:
+    with open(initial+avlist,"a") as al:
         al.write(nsize+'\n')
 
     if not a_imageURL == 100:
