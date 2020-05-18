@@ -3,21 +3,32 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from time import sleep
+
 tar_url0 = 'https:bestpartner08.jp'
 tar_url1 = 'https:google.com'
 
+# ブラウザのオプションにヘッドレスモードを指定
+options = webdriver.FirefoxOptions()
+options.add_argument('--headless')
 
 
 
 
-driver = webdriver.Firefox()
+start_page = 985
+
+# 設定したオプションでブラウザオブジェクトの生成
+driver = webdriver.Firefox(options=options)
 driver.get(tar_url0)
 
-for page in range(968,900,-1):
- tar_page = 'https://bestpartner08.jp/blog-entry-'+str(page)+'.html'
- print(tar_page)
- driver.get(tar_page)
- wait = WebDriverWait(driver, 10) # 最大10秒
+while start_page > 500:
+    middle_page = start_page - 100
+    for page in range(start_page,middle_page,-1):
+        tar_page = 'https://bestpartner08.jp/blog-entry-'+str(page)+'.html'
+        print(tar_page)
+        driver.get(tar_page)
+        wait = WebDriverWait(driver, 10) # 最大10秒
+    sleep(30)
+    start_page = middle_page
 
 
 """
