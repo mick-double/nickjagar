@@ -19,8 +19,8 @@ options.add_argument('--headless')
 
 for i in range(3):
 
-#    driver = webdriver.Firefox(options=options)
-    driver = webdriver.Firefox()
+    driver = webdriver.Firefox(options=options)
+#    driver = webdriver.Firefox()
     driver.get(tar_url4)
     ##driver.find_element_by_name('profile-list-description').click()
     print(driver.current_url) ## URLを確認する
