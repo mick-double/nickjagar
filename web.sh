@@ -5,3 +5,5 @@ sleep 5
 python3 autoweb02.py
 sleep 5
 python3 autoweb03.py
+sleep 5
+python3 autoweb04.py
